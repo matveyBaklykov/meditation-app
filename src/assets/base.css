@@ -1,0 +1,28 @@
+/* color palette from <https://github.com/vuejs/theme> */
+:root {
+  --color-bg: #3A5051;
+  --color-fg: #F7F3F0;
+  --color-text: #fff;
+  --color-text-dark: #000000;
+  --color-dark-green: #253334;
+  --color-light-green: #7C9A92;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-bg);
+  
+  font-family:"Alegreya Sans", sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
