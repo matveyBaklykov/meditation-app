@@ -2,7 +2,7 @@
 </script>
 
 <template>
-
+  Meditation app
 </template>
 
 <style scoped>
