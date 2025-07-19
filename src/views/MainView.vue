@@ -8,17 +8,20 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <header class="header">
-    <IconLogo />
+    <RouterLink to="/">
+      <IconLogo />
+    </RouterLink>
+
     <div class="header__nav">
-      <RouterLink to="/main/meditation" class="header__nav-item">
+      <RouterLink to="/meditation" class="header__nav-item">
         <IconMeditationPlay />
         <p>Медитация</p>
       </RouterLink>
-      <RouterLink to="/main/statistic" class="header__nav-item">
+      <RouterLink to="/statistic" class="header__nav-item">
         <IconStatistics />
         <p>Статистика</p>
       </RouterLink>
-      <RouterLink to="/" class="header__nav-item">
+      <RouterLink to="/auth" class="header__nav-item">
         <IconExit />
         <p>Выход</p>
       </RouterLink>
