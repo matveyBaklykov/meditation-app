@@ -6,15 +6,15 @@ const feelings = [
   { name: 'Спокойно', image: '../../public/Calm-Icon.svg' },
   {
     name: 'Расслаблено',
-    image: '../../public/Relax.svg',
+    image: '/Relax.svg',
   },
   {
     name: 'Фокусировано',
-    image: '../../public/Focus.svg',
+    image: '/Focus.svg',
   },
   {
     name: 'Тревожно',
-    image: '../../public/Anxious.svg',
+    image: '/Anxious.svg',
   },
 ]
 </script>
@@ -22,13 +22,7 @@ const feelings = [
 <template>
   <main class="main">
     <div class="welcome">
-      <img
-        src="../../public/profile-pic.png"
-        alt="profile picture"
-        class="logo"
-        width="130"
-        height="130"
-      />
+      <img src="/profile-pic.png" alt="profile picture" class="logo" width="130" height="130" />
       <div class="welcome__text">
         <h3 class="welcome__title">Добро пожаловать, имя!</h3>
         <p class="welcome__subtitle">Как вы сегодня себя чувствуете?</p>

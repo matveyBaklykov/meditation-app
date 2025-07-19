@@ -3,24 +3,25 @@ import IconExit from '@/icons/IconExit.vue'
 import IconLogo from '@/icons/IconLogo.vue'
 import IconMeditationPlay from '@/icons/IconMeditationPlay.vue'
 import IconStatistics from '@/icons/IconStatistics.vue'
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <header class="header">
     <IconLogo />
     <div class="header__nav">
-      <a class="header__nav-item">
+      <RouterLink to="/main/meditation" class="header__nav-item">
         <IconMeditationPlay />
         <p>Медитация</p>
-      </a>
-      <a class="header__nav-item">
+      </RouterLink>
+      <RouterLink to="/main/statistic" class="header__nav-item">
         <IconStatistics />
         <p>Статистика</p>
-      </a>
-      <a class="header__nav-item">
+      </RouterLink>
+      <RouterLink to="/" class="header__nav-item">
         <IconExit />
         <p>Выход</p>
-      </a>
+      </RouterLink>
     </div>
   </header>
   <RouterView />
@@ -46,6 +47,8 @@ import IconStatistics from '@/icons/IconStatistics.vue'
   height: 92px;
   text-align: center;
   align-content: center;
+  color: var(--color-text);
+  text-decoration: none;
 }
 .header__nav-item:last-child {
   border-right: none;
