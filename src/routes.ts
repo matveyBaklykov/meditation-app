@@ -3,11 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 export const router = createRouter({
   routes: [
     {
-      path: '/',
+      path: '/auth',
       component: () => import('./views/AuthView.vue'),
     },
     {
-      path: '/main',
+      path: '/',
       component: () => import('./views/MainView.vue'),
       children: [
         {
