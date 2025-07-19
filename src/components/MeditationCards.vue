@@ -44,6 +44,7 @@ onMounted(() => {
   justify-content: space-between;
 }
 .meditation-card__title {
+  font-family: var(--second-family);
   font-size: 25px;
 }
 .meditation-card__footer {
