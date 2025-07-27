@@ -2,9 +2,12 @@
 import FeelingButton from '@/components/FeelingButton.vue'
 import MeditationCards from '@/components/MeditationCards.vue'
 import { useProfileStore } from '@/stores/profile.store'
-import { onMounted } from 'vue'
+import { useStatsStore } from '@/stores/stats.store'
+import { onMounted, ref } from 'vue'
 
 const profileStore = useProfileStore()
+
+const statsStore = useStatsStore()
 
 onMounted(() => {
   profileStore.fetchProfile()
@@ -28,6 +31,13 @@ const feelings = [
     name: 'Тревожно',
   },
 ]
+
+const selectedFeelingType = ref<string | null>(null)
+
+function selectFeeling(type: string) {
+  selectedFeelingType.value = type
+  statsStore.updateFeeling(type)
+}
 </script>
 
 <template>
@@ -47,6 +57,8 @@ const feelings = [
           :type="feeling.type"
           v-for="feeling in feelings"
           :key="feeling.type"
+          :selected-type="selectedFeelingType"
+          @select="selectFeeling"
         />
       </div>
     </div>

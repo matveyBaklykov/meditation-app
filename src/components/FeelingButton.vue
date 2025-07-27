@@ -1,6 +1,10 @@
 <template>
   <div class="moods">
-    <button class="feeling-button" @click="choosedFeeling()">
+    <button
+      class="feeling-button"
+      :class="{ active: selectedType === type }"
+      @click="choosedFeeling"
+    >
       <img :src="image" :alt="name" class="feeling-button__image" />
     </button>
     <p class="feeling-button__text">{{ name }}</p>
@@ -8,18 +12,19 @@
 </template>
 
 <script setup lang="ts">
-import { useStatsStore } from '@/stores/stats.store'
-
 const { name, image, type } = defineProps<{
   name: string
   image: string
   type: string
+  selectedType: string | null
 }>()
 
-const statsStore = useStatsStore()
+const emit = defineEmits<{
+  (e: 'select', type: string): void
+}>()
 
 function choosedFeeling() {
-  statsStore.updateFeeling(type)
+  emit('select', type)
 }
 </script>
 
@@ -44,5 +49,9 @@ function choosedFeeling() {
 
 .feeling-button__text {
   font-size: 12px;
+}
+
+.feeling-button.active {
+  background-color: rgb(105, 176, 156);
 }
 </style>
