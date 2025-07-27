@@ -3,7 +3,17 @@ import IconExit from '@/icons/IconExit.vue'
 import IconLogo from '@/icons/IconLogo.vue'
 import IconMeditationPlay from '@/icons/IconMeditationPlay.vue'
 import IconStatistics from '@/icons/IconStatistics.vue'
-import { RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/auth.store'
+import { RouterLink, useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+
+const router = useRouter()
+
+function logout() {
+  authStore.clearToken()
+  router.push({ path: '/auth' })
+}
 </script>
 
 <template>
@@ -21,10 +31,10 @@ import { RouterLink } from 'vue-router'
         <IconStatistics />
         <p>Статистика</p>
       </RouterLink>
-      <RouterLink to="/auth" class="header__nav-item">
+      <div class="header__nav-item" @click="logout">
         <IconExit />
         <p>Выход</p>
-      </RouterLink>
+      </div>
     </div>
   </header>
   <RouterView />
