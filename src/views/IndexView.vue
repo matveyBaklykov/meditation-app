@@ -1,20 +1,31 @@
 <script setup lang="ts">
 import FeelingButton from '@/components/FeelingButton.vue'
 import MeditationCards from '@/components/MeditationCards.vue'
+import { useProfileStore } from '@/stores/profile.store'
+import { onMounted } from 'vue'
+
+const profileStore = useProfileStore()
+
+onMounted(() => {
+  profileStore.fetchProfile()
+})
 
 const feelings = [
-  { name: 'Спокойно', image: '/Calm-Icon.svg' },
+  { type: 'feeling_calm', image: '/Calm-Icon.svg', name: 'Спокойно' },
   {
-    name: 'Расслаблено',
+    type: 'feeling_relax',
     image: '/Relax.svg',
+    name: 'Расслаблено',
   },
   {
-    name: 'Фокусировано',
+    type: 'feeling_focus',
     image: '/Focus.svg',
+    name: 'Сфокусировано',
   },
   {
-    name: 'Тревожно',
+    type: 'feeling_anxiety',
     image: '/Anxious.svg',
+    name: 'Тревожно',
   },
 ]
 </script>
@@ -24,15 +35,18 @@ const feelings = [
     <div class="welcome">
       <img src="/profile-pic.png" alt="profile picture" class="logo" width="130" height="130" />
       <div class="welcome__text">
-        <h3 class="welcome__title">Добро пожаловать, имя!</h3>
+        <h3 class="welcome__title">
+          Добро пожаловать, {{ profileStore.profile?.data.user.username }}
+        </h3>
         <p class="welcome__subtitle">Как вы сегодня себя чувствуете?</p>
       </div>
       <div class="buttons">
         <FeelingButton
           :image="feeling.image"
           :name="feeling.name"
+          :type="feeling.type"
           v-for="feeling in feelings"
-          :key="feeling.name"
+          :key="feeling.type"
         />
       </div>
     </div>
