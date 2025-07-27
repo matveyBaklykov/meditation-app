@@ -7,6 +7,12 @@ import { ref } from 'vue'
 export const useMeditationStore = defineStore('meditation', () => {
   const meditations = ref<Meditation[]>([])
 
+  const currentMeditation = ref<Meditation | null>(null)
+
+  function setCurrentMeditation(id: number) {
+    currentMeditation.value = meditations.value.find((item) => item.id === id) || null
+  }
+
   async function fetchMeditations() {
     const { data } = await axios.get<{ data: { meditations: Meditation[] } }>(
       API_ROUTES.meditations,
@@ -15,5 +21,5 @@ export const useMeditationStore = defineStore('meditation', () => {
     meditations.value = data.data.meditations
   }
 
-  return { meditations, fetchMeditations }
+  return { meditations, fetchMeditations, setCurrentMeditation, currentMeditation }
 })

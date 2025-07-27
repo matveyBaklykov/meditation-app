@@ -4,5 +4,5 @@ export interface Meditation {
   updated_at: string
   title: string
   description: string
-  duration_min: string
+  duration_min: number
 }

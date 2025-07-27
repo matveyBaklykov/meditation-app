@@ -2,8 +2,15 @@
 import { useMeditationStore } from '@/stores/meditation.store'
 import { onMounted } from 'vue'
 import ButtonStart from './ButtonStart.vue'
+import { useRouter } from 'vue-router'
 
 const store = useMeditationStore()
+const router = useRouter()
+
+function startMeditation(id: number) {
+  store.setCurrentMeditation(id)
+  router.push('/meditation')
+}
 
 onMounted(() => {
   store.fetchMeditations()
@@ -18,7 +25,7 @@ onMounted(() => {
         <div class="meditation-card__description">{{ item.description }}</div>
       </div>
       <div class="meditation-card__footer">
-        <ButtonStart />
+        <ButtonStart @click="startMeditation(item.id)" />
         <div class="meditation-card__duration">{{ item.duration_min }} мин</div>
       </div>
     </div>

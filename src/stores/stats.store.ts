@@ -7,7 +7,7 @@ import { ref } from 'vue'
 export const useStatsStore = defineStore('feelings', () => {
   const statistics = ref<SummaryStatistic>()
 
-  async function updateFeeling(type: string, value: number = 1) {
+  async function updateStats(type: string, value: number) {
     await client().post<Stats>(API_ROUTES.stats, {
       type,
       value,
@@ -19,5 +19,5 @@ export const useStatsStore = defineStore('feelings', () => {
     statistics.value = data
   }
 
-  return { updateFeeling, getStats }
+  return { updateStats, getStats, statistics }
 })

@@ -4,6 +4,7 @@ import IconLogo from '@/icons/IconLogo.vue'
 import IconMeditationPlay from '@/icons/IconMeditationPlay.vue'
 import IconStatistics from '@/icons/IconStatistics.vue'
 import { useAuthStore } from '@/stores/auth.store'
+import { useMeditationStore } from '@/stores/meditation.store'
 import { RouterLink, useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
@@ -14,6 +15,17 @@ function logout() {
   authStore.clearToken()
   router.push({ path: '/auth' })
 }
+
+const meditationStore = useMeditationStore()
+
+async function goToDefaultMeditation() {
+  if (!meditationStore.meditations.length) {
+    await meditationStore.fetchMeditations()
+  }
+
+  meditationStore.setCurrentMeditation(1)
+  router.push('/meditation')
+}
 </script>
 
 <template>
@@ -23,10 +35,10 @@ function logout() {
     </RouterLink>
 
     <div class="header__nav">
-      <RouterLink to="/meditation" class="header__nav-item">
+      <div class="header__nav-item" @click="goToDefaultMeditation">
         <IconMeditationPlay />
         <p>Медитация</p>
-      </RouterLink>
+      </div>
       <RouterLink to="/statistic" class="header__nav-item">
         <IconStatistics />
         <p>Статистика</p>

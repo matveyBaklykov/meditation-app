@@ -36,7 +36,7 @@ const selectedFeelingType = ref<string | null>(null)
 
 function selectFeeling(type: string) {
   selectedFeelingType.value = type
-  statsStore.updateFeeling(type)
+  statsStore.updateStats(type, 1)
 }
 </script>
 
